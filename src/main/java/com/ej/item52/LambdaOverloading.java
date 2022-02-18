@@ -8,7 +8,7 @@ public class LambdaOverloading {
     public static void main(String[] args) {
         new Thread(System.out::println).start();
 
-        ExecutorService exec = Executors.newCachedThreadPool();
-        exec.submit(System.out::println);
+//        ExecutorService exec = Executors.newCachedThreadPool();
+//        exec.submit(System.out::println);
     }
 }
