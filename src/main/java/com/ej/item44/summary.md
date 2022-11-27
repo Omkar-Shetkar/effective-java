@@ -2,6 +2,16 @@
 
 - If one of the standard functional interfaces does the job, you should generally use 
 it in preference to a purpose-built functional interface.
+
+Interface | Function Signature | Example             |
+--------- |--------------------|---------------------|
+UnaryOperator<T> | T apply(T t)       | String::toLowerCase |
+BinaryOperator<T> | T apply(T t1, Tt2) | BigInteger::add     |
+Predicate<T> | boolean test(T t)  | Collection::isEmpty |
+Function<T, R> | R apply(T t)       | Arrays::asList      |
+Supplier<T> | T get()            | Instant::now        |
+Consumer<T> | void accept(T t)   | System.out::println |
+
 - Don't be tempted to use basic functional interfaces with boxed primitives instead of
 primitive functional interfaces.
 - You should prefer to write custom functional interface in preference to using a standard one only if
@@ -35,10 +45,13 @@ graph LR
   pre --> longpre(LongPredicate)
   pre --> doublepre(DoublePredicate)
   
-  fun --> intfun(IntFunction)
-  fun --> longfun(LongFunction)
-  fun --> doublefun(DoubleFunction)
-  fun --> primitives
+  fun --> intfun(IntFunction<R>)
+  fun --> longfun(LongFunction<R>)
+  fun --> doublefun(DoubleFunction<R>)
+  fun --> prim(Primitives)
+  prim --> longint(LongToIntFunction)
+  fun --> twoargfun(Two Argument Function Primitive Retrurn)
+  twoargfun --> intbifunction
   
   sup --> intsup(IntSupplier)
   sup --> longsup(LongSupplier)
@@ -47,6 +60,8 @@ graph LR
   con --> intcon(IntConsumer)
   con --> longcon(LongConsumer)
   con --> doublecon(DoubleConsumer)
+  con --> twoargcon(Two Argument with Primitve Consumer)
+  twoargcon --> doubleconsumer
   
   subgraph Primitives
     longint(LongToIntFunction)

@@ -35,3 +35,8 @@ class CustomLinkedHashMap extends LinkedHashMap {
         return size() > 5;
     }
 }
+
+@FunctionalInterface
+interface EldestEntryRemovalFunction<K, V> {
+    boolean remove(Map<K, V> map, Map.Entry<K, V> entry);
+}
